@@ -9,18 +9,20 @@ var upload = multer();
 app.use(bodyParser.urlencoded({
     extended: true
 }));
-app.get('/api/sayget/', function (request, response) {
-    var name = request.query.name;
-    var result = {
-        message: name
-    };
+app.get('/', function (request, response) {
+    response.send('Hello World');
+});
+app.get('/api/sayhello/:name', function (request, response) {
+    var name = request.params.name;
     if (!isNaN(name)) {
         response
             .status(400)
             .send('No string as name');
     }
     else {
-        response.json(result);
+        response.json({
+            "message": name
+        });
     }
 });
 app.post('/api/sayHello', upload.array(), function (request, response) {

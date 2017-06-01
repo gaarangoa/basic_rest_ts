@@ -13,19 +13,22 @@ app.use(bodyParser.urlencoded({
 
 
 
-app.get('/api/sayget/', (request, response) => {
-    let name = request.query.name;
+app.get('/', function (request, response) {
+    response.send('Hello World');
+});
 
-    let result = {
-        message: name
-    };
+
+app.get('/api/sayhello/:name', (request, response) => {
+    let name = request.params.name;
 
     if (!isNaN(name)) {
         response
             .status(400)
             .send('No string as name');
     } else {
-        response.json(result);
+        response.json({
+            "message": name
+        });
     }
 });
 
