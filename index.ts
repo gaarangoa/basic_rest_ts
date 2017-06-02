@@ -11,8 +11,6 @@ app.use(bodyParser.urlencoded({
 }));
 
 
-
-
 app.get('/', function (request, response) {
     response.send('Hello World');
 });
@@ -31,7 +29,6 @@ app.get('/api/sayhello/:name', (request, response) => {
         });
     }
 });
-
 
 
 app.post('/api/sayHello', upload.array(), (request, response) => {
